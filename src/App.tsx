@@ -22,14 +22,12 @@ function App() {
   }
   return (
     <main>
-      <Authenticator>
-      {({ signOut, user }) => (
       <h1>試験的todoリスト</h1>
       <button onClick={createTodo}>+ new</button>
       <ul>
         {todos.map((todo) => (
           <li
-          onClick={() => deleteTodo(todo.id)} 
+           onClick={() => deleteTodo(todo.id)} 
           key={todo.id}>{todo.content}</li>
         ))}
       </ul>
@@ -37,10 +35,7 @@ function App() {
         上記スペースに任意のワードを入力することで簡易的なtodoリストを作成することが可能です
         <br />
       </div>
-       <button onClick={signOut}>サインアウト</button>
     </main>
-    )}
-    </Authenticator>
   );
 }
 
