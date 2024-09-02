@@ -17,23 +17,30 @@ function App() {
     client.models.Todo.create({ content: window.prompt("Todo content") });
   }
 
+  function deleteTodo(id: string) {
+    client.models.Todo.delete({ id })
+  }
   return (
     <main>
-      <h1>My todos</h1>
+      <Authenticator>
+      {({ signOut, user }) => (
+      <h1>試験的todoリスト</h1>
       <button onClick={createTodo}>+ new</button>
       <ul>
         {todos.map((todo) => (
-          <li key={todo.id}>{todo.content}</li>
+          <li
+          onClick={() => deleteTodo(todo.id)} 
+          key={todo.id}>{todo.content}</li>
         ))}
       </ul>
       <div>
-        🥳 App successfully hosted. Try creating a new todo.
+        上記スペースに任意のワードを入力することで簡易的なtodoリストを作成することが可能です
         <br />
-        <a href="https://docs.amplify.aws/react/start/quickstart/#make-frontend-updates">
-          Review next step of this tutorial.
-        </a>
       </div>
+       <button onClick={signOut}>サインアウト</button>
     </main>
+    )}
+    </Authenticator>
   );
 }
 
